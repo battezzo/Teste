@@ -1,0 +1,5 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="3">
+    <path d="M46.5 31.5h-.32a10.49 10.49 0 00-19.11-8.43A10.29 10.29 0 0020.5 20a10.5 10.5 0 00-.52 20.95h26.52A10.49 10.49 0 0046.5 31.5z" fill="#cfcfcf" stroke="#cfcfcf"/>
+    <path d="M30.2 23.3A7.5 7.5 0 1020 32.7l.5.1h-.5a7.5 7.5 0 000 15h15.5a7.5 7.5 0 005.5-13.2 7.3 7.3 0 00-6.5-11.4 7.5 7.5 0 00-3.8.9z" fill="#adadad" stroke="#adadad"/>
+    <polygon points="32,42 26,52 34,52 28,62" stroke="#ffd700" fill="#ffd700" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

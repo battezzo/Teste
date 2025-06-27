@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-R-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaWise</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ClimaWise</h1>
+            <nav>
+                <button id="nav-home" class="nav-button active">Home</button>
+                <button id="nav-forecast" class="nav-button">Previsão</button>
+                <button id="nav-settings" class="nav-button">Configurações</button>
+            </nav>
+        </header>
+        <main>
+            <section id="home-screen" class="screen active">
+                <div class="current-weather-card card">
+                    <div class="location-time">
+                        <h2 id="current-location">Carregando...</h2>
+                        <div class="header-controls">
+                            <p id="current-datetime">--/--/---- --:--</p>
+                            <button id="refresh-button" title="Atualizar dados">🔄</button>
+                        </div>
+                    </div>
+                    <div class="weather-details-main">
+                        <div class="temperature-section">
+                            <img id="current-weather-icon" src="icons/default.svg" alt="Ícone do tempo" class="weather-icon-large">
+                            <div class="temp-display">
+                                <span id="current-temp">--</span><span class="temp-unit">°C</span>
+                            </div>
+                            <p id="current-feels-like">Sensação: --°C</p>
+                            <p id="current-condition-text">--</p>
+                        </div>
+                        <div class="extra-details">
+                            <p>Vento: <span id="current-wind">-- km/h</span> <span id="current-wind-direction">--</span></p>
+                            <p>Umidade: <span id="current-humidity">--%</span></p>
+                            <p>Pressão: <span id="current-pressure">---- hPa</span></p>
+                            <p>UV: <span id="current-uv-index">--</span> <span id="current-uv-text">(--)</span> <span id="uv-color-indicator"></span></p>
+                            <p>Qual. Ar (IQA): <span id="current-air-quality">--</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sun-moon-card card">
+                    <h3>Nascer e Pôr do Sol</h3>
+                    <div class="sun-moon-details">
+                        <p>Nascer do Sol: <span id="sunrise-time">--:--</span></p>
+                        <p>Pôr do Sol: <span id="sunset-time">--:--</span></p>
+                    </div>
+                    <div class="sun-moon-graph">
+                        <!-- Gráfico será implementado aqui (pode ser via CSS ou JS/SVG) -->
+                        <div class="graph-placeholder">Gráfico do Sol</div>
+                    </div>
+                </div>
+
+                <div id="weather-alerts-banner" class="alerts-card card" style="display: none;">
+                    <h3>Alertas Meteorológicos</h3>
+                    <p id="alert-message"></p>
+                </div>
+            </section>
+
+            <section id="extended-forecast-screen" class="screen" style="display: none;">
+                <div class="forecast-header card">
+                    <h2>Previsão para os Próximos Dias</h2>
+                    <div class="model-toggle">
+                        <span>Modelo:</span>
+                        <button id="model-00z" class="model-button active" data-model="00Z">00Z</button>
+                        <button id="model-12z" class="model-button" data-model="12Z">12Z</button>
+                        <span class="forecast-days-selector">
+                            Ver:
+                            <select id="forecast-days-select">
+                                <option value="7" selected>7 dias</option>
+                                <option value="14">14 dias</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <div id="forecast-container" class="forecast-container">
+                    <!-- Cards de previsão diária serão inseridos aqui pelo JS -->
+                    <div class="forecast-day-card card placeholder">
+                        <p class="forecast-date">--/--</p>
+                        <img src="icons/default.svg" alt="Condição" class="forecast-icon">
+                        <p class="forecast-condition">Carregando...</p>
+                        <div class="temp-bar-container">
+                            <div class="temp-bar" style="background: linear-gradient(to right, blue, red); width: 0%;">
+                                <span class="min-temp">--°</span>
+                                <span class="max-temp">--°</span>
+                            </div>
+                        </div>
+                        <p class="forecast-precipitation">Chuva: --%</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings-screen" class="screen" style="display: none;">
+                <div class="settings-container card">
+                    <h2>Configurações</h2>
+
+                    <div class="setting-item">
+                        <label for="theme-select">Tema:</label>
+                        <select id="theme-select">
+                            <option value="light-theme">Claro</option>
+                            <option value="dark-theme">Escuro</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Unidades de Temperatura:</label>
+                        <div>
+                            <input type="radio" id="temp-celsius" name="temp-unit" value="°C" checked>
+                            <label for="temp-celsius">Celsius (°C)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="temp-fahrenheit" name="temp-unit" value="°F">
+                            <label for="temp-fahrenheit">Fahrenheit (°F)</label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Unidades de Pressão:</label>
+                        <div>
+                            <input type="radio" id="pressure-hpa" name="pressure-unit" value="hPa" checked>
+                            <label for="pressure-hpa">hPa</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="pressure-mbar" name="pressure-unit" value="mbar">
+                            <label for="pressure-mbar">mbar</label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Unidades de Vento:</label>
+                        <div>
+                            <input type="radio" id="wind-kmh" name="wind-unit" value="km/h" checked>
+                            <label for="wind-kmh">km/h</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="wind-mph" name="wind-unit" value="mph">
+                            <label for="wind-mph">mph</label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="default-model-select">Modelo de Execução Padrão (Previsão):</label>
+                        <select id="default-model-select">
+                            <option value="00Z">00Z (ECMWF IFS)</option>
+                            <option value="12Z">12Z (ECMWF IFS)</option>
+                        </select>
+                        <p class="settings-note">Nota: A API Open-Meteo usada (ECMWF IFS 0.4°) sempre busca a execução mais recente. Esta opção é primariamente visual para indicar preferência.</p>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>Dados fornecidos por Open-Meteo (ECMWF)</p>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
